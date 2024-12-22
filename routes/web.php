@@ -14,3 +14,5 @@ Route::resource('eleves', ElevesController::class);
 Route::resource('modules', ModulesController::class);
 Route::resource('evaluations', EvaluationController::class);
 Route::resource('eleve-evaluation', EleveEvaluationController::class);
+
+Route::get('/mauvais-eleves', [EleveEvaluationController::class, 'mauvaisEleves'])->name('mauvais-eleves');

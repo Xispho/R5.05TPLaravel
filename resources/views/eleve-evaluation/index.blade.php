@@ -13,6 +13,7 @@
 @section('content')
 
     <a href="{{ route('eleve-evaluation.create') }}">Noter un élève</a>
+    <a href="{{ route('mauvais-eleves') }}">Voir les mauvais élèves</a>
 
     <h1>Notes des élèves</h1>
     <table>

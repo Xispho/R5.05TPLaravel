@@ -60,6 +60,12 @@ class EleveEvaluationController extends Controller
         return view('eleve-evaluation.show', compact('eleve'));
     }
 
+    public function mauvaisEleves()
+    {
+        $notes = EvaluationEleve::where('note', '<', 10)->get();
+        return view('eleve-evaluation.mauvais-eleves', compact('notes'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
