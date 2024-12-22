@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Mon Application</h1>
+            <h1>Application de gestion des notes</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url('/') }}">Accueil</a></li>
