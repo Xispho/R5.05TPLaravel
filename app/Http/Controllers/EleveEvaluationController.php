@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\EvaluationEleve;
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
+use App\Models\Eleves;
+use Illuminate\Support\Facades\Validator;
 
 class EleveEvaluationController extends Controller
 {
@@ -13,7 +16,8 @@ class EleveEvaluationController extends Controller
      */
     public function index()
     {
-        //
+        $notes = EvaluationEleve::all();
+        return view('eleve-evaluation.index', compact('notes'));
     }
 
     /**
@@ -21,8 +25,9 @@ class EleveEvaluationController extends Controller
      */
     public function create()
     {
-        $modules = EvaluationEleve::all();
-        return view('evaluations.create', compact('modules'));
+        $evaluations = Evaluation::all();
+        $eleves = Eleves::all();
+        return view('eleve-evaluation.create', compact('evaluations', 'eleves'));
     }
 
     /**
@@ -30,7 +35,20 @@ class EleveEvaluationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = Validator::make($request->all(), [
+            'evaluation_id' => 'required|numeric',
+            'eleve_id' => 'required|numeric',
+            'note' => 'required|numeric',
+           ]);
+           
+            if ($validatedData->fails()) { 
+                return redirect() ->back() ->withErrors($validatedData) ->withInput();
+            }
+
+        // Crée un nouvel élève
+        EvaluationEleve::create($validatedData->validated());
+
+        return redirect()->route('eleve-evaluation.index')->with('success', 'Note créé avec succès.');
     }
 
     /**
