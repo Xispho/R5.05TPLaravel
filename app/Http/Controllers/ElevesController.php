@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Eleves;
-use App\Models\EvaluationEleve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Notes;
 
 class ElevesController extends Controller
 {
@@ -49,7 +49,7 @@ class ElevesController extends Controller
     public function show($id)
     {
         $eleve = Eleves::findOrFail($id);
-        $moyenne = EvaluationEleve::where('eleve_id', $id)->get()->avg('note');
+        $moyenne = Notes::where('eleve_id', $id)->get()->avg('note');
         if ($moyenne == null) {
             $moyenne = "Aucune note";
         }
