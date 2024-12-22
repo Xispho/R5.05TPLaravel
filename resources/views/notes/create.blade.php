@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <h1>Ajouter une note pour l'évaluation : {{ $evaluation->titre }}</h1>
-    <p><strong>Module :</strong> {{ $evaluation->module->nom }}</p>
-    <p><strong>Date :</strong> {{ $evaluation->date }}</p>
+    <h1>Ajouter une note pour l'évaluation : {{ $notes->evaluation->titre }}</h1>
+    <p><strong>Module :</strong> {{ $notes->evaluation->module->nom }}</p>
+    <p><strong>Date :</strong> {{ $notes->evaluation->date }}</p>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form action="{{ route('notes.store') }}" method="POST">
+    <form action="{{ route('eleve-evaluation.store') }}" method="POST">
         @csrf
 
         <!-- Champ caché pour l'évaluation -->

@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
     <h1>Notes pour l'évaluation : {{ $evaluation->titre }}</h1>
+
+    <a href="{{ route('eleve-evaluation.create') }}">Noter un élève</a>
+
     <p><strong>Module :</strong> {{ $evaluation->module->nom }}</p>
     <p><strong>Date :</strong> {{ $evaluation->date }}</p>
 
