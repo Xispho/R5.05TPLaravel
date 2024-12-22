@@ -16,6 +16,7 @@
                     <li><a href="{{ url('/eleves') }}">Élèves</a></li>
                     <li><a href="{{ url('/modules') }}">Modules</a></li>
                     <li><a href="{{ url('/evaluations') }}">Évaluations</a></li>
+                    <li><a href="{{ url('/eleve-evaluation') }}">Notes</a></li>
                 </ul>
             </nav>
         </header>
