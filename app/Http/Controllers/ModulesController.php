@@ -44,14 +44,14 @@ class ModulesController extends Controller
     // Affiche les détails d'un module spécifique
     public function show(string $id)
     {
-        $eleve = Modules::findOrFail($id);
+        $module = Modules::findOrFail($id);
         return view('modules.show', compact('module'));
     }
 
     // Affiche le formulaire pour éditer un module
     public function edit(string $id)
     {
-        $eleve = Modules::findOrFail($id);
+        $module = Modules::findOrFail($id);
         return view('modules.edit', compact('module'));
     }
 
