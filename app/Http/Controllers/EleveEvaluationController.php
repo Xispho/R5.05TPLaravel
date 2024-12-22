@@ -16,7 +16,8 @@ class EleveEvaluationController extends Controller
      */
     public function index()
     {
-        //
+        $notes = EvaluationEleve::all();
+        return view('eleve-evaluation.index',compact('notes'));
     }
 
     /**
@@ -55,7 +56,8 @@ class EleveEvaluationController extends Controller
      */
     public function show($id)
     {
-        //
+        $eleve = Eleves::findOrFail($id);
+        return view('eleve-evaluation.show', compact('eleve'));
     }
 
     /**

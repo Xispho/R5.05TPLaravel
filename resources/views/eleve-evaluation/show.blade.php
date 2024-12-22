@@ -2,6 +2,24 @@
 
 @section('content')
 <div class="container">
-    <h1>Note de l'élève : {{$evaluation->eleve->nom}}</h1>
+    <h1>Note de l'élève : {{$eleve->nom}} {{$eleve->prenom}}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Evaluation</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($eleve->notes as $note)
+                <tr>
+                    <td>{{ $note->evaluation->module->nom }}</td>
+                    <td>{{ $note->evaluation->titre }}</td>
+                    <td>{{ $note->note }}</td>
+                </tr>
+            @endforeach
+        </tbody>
 </div>
 @endsection

@@ -24,7 +24,7 @@
         <tbody>
             @foreach($notes as $note)
                 <tr>
-                    <td>{{ $note->eleve->nom }}</td>
+                    <td>{{$note->eleve->nom}} {{$note->eleve->prenom}}</td>
                     <td>
                         <a href="{{ route('eleve-evaluation.show', $note->eleve->id) }}">Voir les notes</a>
                     </td>
