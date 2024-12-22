@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+
+
     <h1>Note de l'élève : {{$eleve->nom}} {{$eleve->prenom}}</h1>
 
     <p><strong>Moyenne : </strong>{{$eleve->notes->avg('note')}}</p>
@@ -23,5 +25,6 @@
                 </tr>
             @endforeach
         </tbody>
+    </table>
 </div>
 @endsection
