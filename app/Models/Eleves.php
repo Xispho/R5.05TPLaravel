@@ -20,7 +20,7 @@ class Eleves extends Model
 
     public function notes()
     {
-        return $this->hasMany(Notes::class);
+        return $this->hasMany(EvaluationEleve::class);
     }
 
 }
