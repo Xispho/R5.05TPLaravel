@@ -12,7 +12,7 @@
             <p><strong>Prénom:</strong> {{ $eleve->prenom }}</p>
             <p><strong>Email:</strong> {{ $eleve->email }}</p>
             <p><strong>Numéro d'étudiant:</strong> {{ $eleve->numero_etudiant }}</p>
-            <p><strong>Image:</strong> {{ $eleve->image }}</p>
+            <strong>Image : </strong><img src="{{ asset('image/' . $eleve->image) }}" alt="Image">
             @if ($moyenne == -1)
                 <p><strong>Moyenne:</strong> Non calculée</p>
             @else
