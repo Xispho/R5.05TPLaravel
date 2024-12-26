@@ -19,21 +19,28 @@ class ElevesController extends Controller
     // Enregistre l'élève dans la base de données
     public function store(Request $request)
     {
-        $validatedData = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'date_naissance' => 'required|date',
             'numero_etudiant' => 'required|string|max:10|unique:eleves,numero_etudiant',
             'email' => 'required|string|unique:eleves,email',
-            'image' => 'string|nullable',
-           ]);
-           
-            if ($validatedData->fails()) { 
-                return redirect() ->back() ->withErrors($validatedData) ->withInput();
-            }
+            'image' => 'mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $validatedData = $validator->validated();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
 
         // Crée un nouvel élève
-        Eleves::create($validatedData->validated());
+        Eleves::create($validatedData);
 
         return redirect()->route('eleves.index')->with('success', 'Élève créé avec succès.');
     }
@@ -66,21 +73,28 @@ class ElevesController extends Controller
     // Met à jour les informations d'un élève dans la base de données
     public function update(Request $request, $id)
     {
-        $validatedData = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'date_naissance' => 'required|date',
             'numero_etudiant' => 'required|string|unique:eleves,numero_etudiant,' . $id,
             'email' => 'required|string',
-            'image' => 'string|nullable',
+            'image' => 'mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if ($validatedData->fails()) {
-            return redirect()->back()->withErrors($validatedData)->withInput();
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $validatedData = $validator->validated();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
         }
 
         $eleve = Eleves::findOrFail($id);
-        $eleve->update($validatedData->validated());
+        $eleve->update($validatedData);
 
         return redirect()->route('eleves.index')->with('success', 'Élève mis à jour avec succès.');
     }

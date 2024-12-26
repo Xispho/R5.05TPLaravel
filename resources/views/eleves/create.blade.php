@@ -14,7 +14,7 @@
     <div class='container'>
         <h1>Ajouter un élève</h1>
 
-        <form action='{{ route('eleves.store') }}' method='POST'>
+        <form action='{{ route('eleves.store') }}' method='POST' enctype="multipart/form-data">
             @csrf
             <div class='mb-3'>
                 <label for='nom' class='form-label'>Nom</label>
