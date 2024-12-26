@@ -42,10 +42,10 @@
             <label for="date_naissance">Date de Naissance</label>
             <input type="date" class="form-control" id="date_naissance" name="date_naissance" value="{{ $eleve->date_naissance }}" required>
         </div>
-
-        <div class="form-group">
+        <div class="form-group">    
+            @csrf
             <label for="image">Image</label>
-            <input type="url" class="form-control" id="image" name="image" value="{{ $eleve->image }}">
+            <input type="file" class="form-control" id="image" name="image" value='{{ $eleve->image }}'>
         </div>
         
         <button type="submit" class="btn btn-primary">Enregistrer</button>

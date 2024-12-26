@@ -36,9 +36,10 @@
                 <label for='email' class='form-label'>Email</label>
                 <input type='email' name='email' class='form-control' id='email' value='{{ old('email') }}'>
             </div>
-            <div class='mb-3'>
+            <div class='mb-3'>    
+                @csrf
                 <label for='image' class='form-label'>Image</label>
-                <input type='url' name='image' class='form-control' id='image' value='{{ old('image') }}'>
+                <input type='file' name='image' class='form-control' id='image' value='{{ old('image') }}'>
             </div>
 
             <button type='submit' class='btn btn-primary'>Ajouter</button>
