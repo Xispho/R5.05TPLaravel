@@ -15,23 +15,12 @@
         <!-- Scripts -->
         @vite(['resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="container">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                @yield('content')
-            </main>
+    <body class="font-sans text-gray-900 antialiased">
+        @include('layouts.navigation')
+        <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div class="w-full mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                {{ $slot }}
+            </div>
         </div>
     </body>
 </html>
