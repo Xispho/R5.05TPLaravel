@@ -8,6 +8,10 @@ use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use App\Models\Eleves;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Notification;
+use App\Mail\NotificationNote;
+use Carbon\Carbon;
 
 class EleveEvaluationController extends Controller
 {
@@ -45,7 +49,11 @@ class EleveEvaluationController extends Controller
                 return redirect() ->back() ->withErrors($validatedData) ->withInput();
             }
 
-        // Crée un nouvel élève
+        $data = $validatedData->validated();
+        $evaluation = Evaluation::find($data['evaluation_id']);
+
+        $date = Carbon::now();
+        Mail::to('eleve@example.com')->send(new NotificationNote($evaluation->titre, $data['note'], $date));
         EvaluationEleve::create($validatedData->validated());
 
         return redirect()->route('eleve-evaluation.index')->with('success', 'Note créé avec succès.');
