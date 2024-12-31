@@ -51,9 +51,10 @@ class EleveEvaluationController extends Controller
 
         $data = $validatedData->validated();
         $evaluation = Evaluation::find($data['evaluation_id']);
+        $eleve = Eleves::find($data['eleve_id']);
 
         $date = Carbon::now();
-        Mail::to('eleve@example.com')->send(new NotificationNote($evaluation->titre, $data['note'], $date));
+        Mail::to($eleve->email)->send(new NotificationNote($evaluation->titre, $data['note'], $date));
         EvaluationEleve::create($validatedData->validated());
 
         return redirect()->route('eleve-evaluation.index')->with('success', 'Note créé avec succès.');
